@@ -4,8 +4,8 @@ namespace CraftKnife
 {
     public class MainSettings : Plugin
     {
-        public override string getName => "CraftKnife";
-        private SetEvents SetEvents;
+        public override string getName => nameof(CraftKnife);
+        public SetEvents SetEvents { get; set; }
 
         public override void OnEnable()
         {

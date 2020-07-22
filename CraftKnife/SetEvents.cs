@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace CraftKnife
 {
-    internal class SetEvents
+    public class SetEvents
     {
         public void OnCallCommand(ConsoleCommandEvent ev)
         {
@@ -108,6 +108,5 @@ namespace CraftKnife
         {
             Global.can_use_commands = false;
         }
-
     }
 }
