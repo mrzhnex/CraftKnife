@@ -4,7 +4,6 @@
     {
         public static bool can_use_commands = false;
         public static float time_to_craft = 120.0f;
-        public static float time_bleed = 60.0f;
         public static float distance_to_cut = 1.0f;
         public static int damage = 20;
 

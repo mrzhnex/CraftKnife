@@ -1,31 +1,29 @@
-﻿using EXILED;
+﻿using Exiled.API.Features;
 
 namespace CraftKnife
 {
-    public class MainSettings : Plugin
+    public class MainSettings : Plugin<Config>
     {
-        public override string getName => nameof(CraftKnife);
+        public override string Name => nameof(CraftKnife);
         public SetEvents SetEvents { get; set; }
 
-        public override void OnEnable()
+        public override void OnEnabled()
         {
             SetEvents = new SetEvents();
-            Events.RoundStartEvent += SetEvents.OnRoundStart;
-            Events.PlayerSpawnEvent += SetEvents.OnPlayerSpawn;
-            Events.PlayerDeathEvent += SetEvents.OnPlayerDeath;
-            Events.ConsoleCommandEvent += SetEvents.OnCallCommand;
-            Log.Info(getName + " on");
+            Exiled.Events.Handlers.Server.RoundStarted += SetEvents.OnRoundStarted;
+            Exiled.Events.Handlers.Server.WaitingForPlayers += SetEvents.OnWaitingForPlayers;
+            Exiled.Events.Handlers.Player.ChangingRole += SetEvents.OnChangingRole;
+            Exiled.Events.Handlers.Server.SendingConsoleCommand += SetEvents.OnSendingConsoleCommand;
+            Log.Info(Name + " on");
         }
 
-        public override void OnDisable()
+        public override void OnDisabled()
         {
-            Events.RoundStartEvent -= SetEvents.OnRoundStart;
-            Events.PlayerSpawnEvent -= SetEvents.OnPlayerSpawn;
-            Events.PlayerDeathEvent -= SetEvents.OnPlayerDeath;
-            Events.ConsoleCommandEvent -= SetEvents.OnCallCommand;
-            Log.Info(getName + " off");
+            Exiled.Events.Handlers.Server.RoundStarted -= SetEvents.OnRoundStarted;
+            Exiled.Events.Handlers.Server.WaitingForPlayers -= SetEvents.OnWaitingForPlayers;
+            Exiled.Events.Handlers.Player.ChangingRole -= SetEvents.OnChangingRole;
+            Exiled.Events.Handlers.Server.SendingConsoleCommand -= SetEvents.OnSendingConsoleCommand;
+            Log.Info(Name + " off");
         }
-
-        public override void OnReload() { }
     }
 }
