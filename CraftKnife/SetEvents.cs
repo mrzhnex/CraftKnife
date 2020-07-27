@@ -26,7 +26,7 @@ namespace CraftKnife
                 ev.ReturnMessage = "Дождитесь начала раунда!";
                 return;
             }
-
+            ev.Allow = false;
             if (ev.Name.ToLower().Contains("craft") && ev.Name.ToLower().Contains("knife"))
             {
                 if (ev.Player.GameObject.GetComponent<CraftProccess>() != null)
